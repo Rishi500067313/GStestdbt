@@ -1,0 +1,9 @@
+target/
+dbt_modules/
+dbt_packages/
+edr_target/
+logs/
+venv/
+env/
+test.env
+__pycache__
