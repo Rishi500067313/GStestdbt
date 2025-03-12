@@ -1,0 +1,83 @@
+version: 2
+
+sources: 
+  - name: GStestdbt
+    database: RAW
+    schema: PUBLIC
+    tables:
+      - name: FACTAVERAGECOSTSDLMGZ
+        description: Fact Table
+        columns:
+          - name: FSCLDT_ID
+            tests:
+            - not_null
+      - name: FACTTRANSACTIONSDLMGZ
+        description: Fact Table
+        columns:
+          - name: SKU_ID
+            tests:
+            - not_null
+      - name: HIERCLNDDLMGZ
+        description: Dimension Table
+        columns:
+          - name: FSCLDT_ID
+            tests:
+            - unique
+            - not_null
+            - relationships:
+                  to: ref('base_GStestdbt_FACTAVERAGECOSTSDLMGZ')
+                  field: FSCLDT_ID
+      - name: HIERHLDYDLMGZ
+        description: Dimension Table
+        columns:
+          - name: HLDY_ID
+            tests:
+            - unique
+            - not_null
+      - name: HIERINVLOCDLMGZ
+        description: Dimension Table
+        columns:
+          - name: LOC
+            tests:
+            - unique
+            - not_null
+      - name: HIERINVSTATUSDLMGZ
+        description: Dimension Table
+        columns:
+          - name: CODE_ID
+            tests:
+            - unique
+            - not_null
+      - name: HIERPOSSITEDLMGZ
+        description: Dimension Table
+        columns:
+          - name: SITE_ID
+            tests:
+            - unique
+            - not_null
+            
+      - name: HIERPRICESTATEDLMGZ
+        description: Dimension Table
+        columns:
+          - name: SUBSTATE_ID
+            tests:
+            - unique
+            - not_null
+      - name: HIERPRODDLMGZ
+        description: Dimension Table
+        columns:
+          - name: SKU_ID
+            tests:
+            - unique
+            - not_null
+            - relationships:
+                  to: ref('base_GStestdbt_FACTTRANSACTIONSDLMGZ')
+                  field: SKU_ID
+      - name: HIERRTLLOCDLMGZ
+        description: Dimension Table
+        columns:
+          - name: STR
+            tests:
+            - unique
+            - not_null
+
