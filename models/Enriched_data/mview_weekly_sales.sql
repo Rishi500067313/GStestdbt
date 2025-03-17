@@ -3,9 +3,9 @@
     unique_key=['pos_site_id', 'sku_id', 'fsclwk_id', 'price_substate_id', 'type']
   ) }}
 
-WITH incremental_records(
-    SELECT MAX(t.dt) AS date_record
-    FROM {{ ref('base_GStestdbt_FACTTRANSACTIONSDLMGZ') }} AS t
+WITH incremental_records AS (
+    SELECT MAX(dt) AS date_record
+    FROM {{ ref('base_GStestdbt_FACTTRANSACTIONSDLMGZ') }}
 ),
 
 transactions AS (
